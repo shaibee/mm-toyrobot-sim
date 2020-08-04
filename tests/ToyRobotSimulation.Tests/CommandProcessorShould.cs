@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using ToyRobotSimulation;
 
-namespace ToyRobotSimulator.Tests
+namespace ToyRobotSimulation.Tests
 {
     [TestFixture]
-    public class Tests
+    public class CommandProcessorShould
     {
         [SetUp]
         public void Setup()
