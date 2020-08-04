@@ -62,9 +62,9 @@ namespace ToyRobotSimulation
             }
         }
 
-        public void Report()
+        public string GetReport()
         {
-            Console.WriteLine($"Output: {X}, {Y}, {Direction.ToString().ToUpperInvariant()}");
+            return $"Output: {X}, {Y}, {Direction.ToString().ToUpperInvariant()}";
         }
 
         public int X { get; private set; }

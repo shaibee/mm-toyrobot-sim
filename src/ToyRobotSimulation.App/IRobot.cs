@@ -7,10 +7,11 @@
         int X { get; }
         int Y { get; }
 
+        void Place(int x, int y, Direction direction);
+        string GetReport();
+        void Right();
         void Left();
         void Move();
-        void Place(int x, int y, Direction direction);
-        void Report();
-        void Right();
+
     }
 }

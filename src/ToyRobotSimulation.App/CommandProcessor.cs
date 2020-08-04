@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ToyRobotSimulation
 {
-    class CommandProcessor
+    public class CommandProcessor
     {
         public static CommandRequest Process(string line)
         {
@@ -54,24 +52,5 @@ namespace ToyRobotSimulation
 
             return new CommandRequest(); //Invalid 
         }
-    }
-
-    class CommandRequest
-    {
-        public CommandRequest()
-        {
-            IsCommandValid = false;
-        }
-
-        public CommandRequest(string command, CommandParams param)
-        {
-            Command = command;
-            Params = param;
-            IsCommandValid = true;
-        }
-
-        public string Command { get; private set; }
-        public CommandParams Params { get; private set; }
-        public bool IsCommandValid { get; private set; }       
     }
 }

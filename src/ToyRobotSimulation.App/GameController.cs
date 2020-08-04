@@ -6,10 +6,10 @@ using System.Xml.Serialization;
 
 namespace ToyRobotSimulation
 {
-    class GameController
+    public class GameController : IGameController
     {
         private readonly Board _board;
-        private readonly Robot _robot;
+        protected readonly Robot _robot;
 
         public GameController(int boardDimensionsX, int boardDimensionsY)
         {
@@ -93,7 +93,8 @@ namespace ToyRobotSimulation
         {
             if (_robot.IsPlaced)
             {
-                _robot.Report();
+                string report = _robot.GetReport();
+                Console.WriteLine(report);
             }
         }
 
