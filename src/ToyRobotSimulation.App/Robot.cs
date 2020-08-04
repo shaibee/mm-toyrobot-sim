@@ -11,7 +11,8 @@ namespace ToyRobotSimulation
         SOUTH,
         WEST
     }
-    public class Robot
+
+    public class Robot : IRobot
     {
 
         public Robot()
@@ -28,7 +29,7 @@ namespace ToyRobotSimulation
         }
 
         public void Left()
-        {          
+        {
             Direction = Direction - 1;
             Direction = (Direction)Mod(Convert.ToInt32(Direction), 4);
         }
@@ -67,7 +68,7 @@ namespace ToyRobotSimulation
         }
 
         public int X { get; private set; }
-        public int Y { get; private set;  }
+        public int Y { get; private set; }
         public Direction Direction { get; private set; }
         public bool IsPlaced { get; private set; }
 

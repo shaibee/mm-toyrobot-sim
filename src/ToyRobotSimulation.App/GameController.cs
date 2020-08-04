@@ -6,12 +6,12 @@ using System.Xml.Serialization;
 
 namespace ToyRobotSimulation
 {
-    class Game
+    class GameController
     {
         private readonly Board _board;
         private readonly Robot _robot;
 
-        public Game(int boardDimensionsX, int boardDimensionsY)
+        public GameController(int boardDimensionsX, int boardDimensionsY)
         {
             _board = new Board(boardDimensionsX, boardDimensionsY);
             _robot = new Robot();
