@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace ToyRobotSimulation
 {
@@ -6,49 +8,42 @@ namespace ToyRobotSimulation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Game game = new Game(5, 5);
 
             while (true)
             {
                 string line = Console.ReadLine();
-                string[] commandParts = line.Split(' ');
-                if ( commandParts == null || commandParts.Length == 0)
+                CommandRequest commandRequest = CommandProcessor.Process(line);
+
+                if (!commandRequest.IsCommandValid)
                 {
-                    Console.WriteLine("Please enter correct command");
+                    Console.WriteLine("Please enter a valid command.");
+                    Console.WriteLine("PLACE, MOVE, LEFT, RIGHT, REPORT, QUIT");
                     continue;
                 }
 
-                string command = commandParts[0].ToUpperInvariant();
-                switch (command)
+                switch (commandRequest.Command)
                 {
-                    case Commands.Place:
-
-                        break;
-                    case Commands.Move:
-                        break;
-                    case Commands.Left:
-                        break;
-                    case Commands.Right:
-                        break;
-                    case Commands.Report:
-                        break;
                     case Commands.Quit:
+                        Environment.Exit(0);
                         break;
+
                     default:
+                        game.RunCommand(commandRequest.Command, commandRequest.Params);
                         break;
                 }
             } 
 
 
-            Test21();
+            //Test21();
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         private static void Test1()
         {
             Robot robot = new Robot();
-            robot.Place(0, 0, Direction.North);
+            robot.Place(0, 0, Direction.NORTH);
             robot.Move();
             robot.Report();
         }
@@ -56,7 +51,7 @@ namespace ToyRobotSimulation
         private static void Test2()
         {
             Robot robot = new Robot();
-            robot.Place(0, 0, Direction.North);
+            robot.Place(0, 0, Direction.NORTH);
             robot.Left();
             robot.Report();
         }
@@ -64,7 +59,7 @@ namespace ToyRobotSimulation
         private static void Test21()
         {
             Robot robot = new Robot();
-            robot.Place(0, 0, Direction.West);
+            robot.Place(0, 0, Direction.WEST);
             robot.Right();
             robot.Report();
         }
@@ -72,7 +67,7 @@ namespace ToyRobotSimulation
         private static void Test3()
         {
             Robot robot = new Robot();
-            robot.Place(1, 2, Direction.East);
+            robot.Place(1, 2, Direction.EAST);
             robot.Move();
             robot.Move();
             robot.Left();
@@ -80,4 +75,6 @@ namespace ToyRobotSimulation
             robot.Report();
         }
     }
+
+
 }

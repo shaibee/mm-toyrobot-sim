@@ -6,16 +6,18 @@ namespace ToyRobotSimulation
 {
     public class Board
     {
-        private const int xLimit = 5;
-        private const int yLimit = 5;
-        
-        public Board()
+        public Board(int dimX, int dimY)
         {
-            X = 0;
-            Y = 0;
+            MaxDimensionX = dimX;
+            MaxDimensionY = dimY;
+            MinDimensionX = 0;
+            MinDimensionY = 0;
         }
 
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int MaxDimensionX { get; private set; }
+        public int MaxDimensionY { get; private set; }
+
+        public int MinDimensionX { get; private set; }
+        public int MinDimensionY { get; private set; }
     }
 }

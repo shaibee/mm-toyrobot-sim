@@ -6,17 +6,13 @@ namespace ToyRobotSimulation
 {
     public enum Direction   // Clockwise
     {
-        North = 0,
-        East,
-        South,
-        West
+        NORTH = 0,
+        EAST,
+        SOUTH,
+        WEST
     }
     public class Robot
     {
-        private int _x;
-        private int _y;
-        private Direction _direction;
-
 
         public Robot()
         {
@@ -25,44 +21,55 @@ namespace ToyRobotSimulation
 
         public void Place(int x, int y, Direction direction)
         {
-            _x = x;
-            _y = y;
-            _direction = direction;
+            X = x;
+            Y = y;
+            Direction = direction;
+            IsPlaced = true;
         }
 
         public void Left()
         {          
-            _direction = _direction - 1;
-            _direction = (Direction)Mod(Convert.ToInt32(_direction), 4);
+            Direction = Direction - 1;
+            Direction = (Direction)Mod(Convert.ToInt32(Direction), 4);
         }
 
         public void Right()
         {
-            _direction = _direction + 1;
-            _direction = (Direction)Mod(Convert.ToInt32(_direction), 4);
+            Direction = Direction + 1;
+            Direction = (Direction)Mod(Convert.ToInt32(Direction), 4);
         }
 
         public void Move()
         {
-            switch (_direction)
+            switch (Direction)
             {
-                case Direction.North:
+                case Direction.NORTH:
                     MoveNorth();
                     break;
 
-                case Direction.East:
+                case Direction.EAST:
                     MoveEast();
                     break;
 
-                case Direction.South:
+                case Direction.SOUTH:
                     MoveSouth();
                     break;
 
-                case Direction.West:
+                case Direction.WEST:
                     MoveWest();
                     break;
             }
         }
+
+        public void Report()
+        {
+            Console.WriteLine($"Output: {X}, {Y}, {Direction.ToString().ToUpperInvariant()}");
+        }
+
+        public int X { get; private set; }
+        public int Y { get; private set;  }
+        public Direction Direction { get; private set; }
+        public bool IsPlaced { get; private set; }
 
         private int Mod(int x, int m)
         {
@@ -72,39 +79,23 @@ namespace ToyRobotSimulation
 
         private void MoveWest()
         {
-            if (--_x < 0)
-            {
-                _x = 0;
-            }
+            X--;
         }
 
         private void MoveSouth()
         {
-            if (--_y < 0)
-            {
-                _y = 0;
-            }
+            Y--;
         }
 
         private void MoveEast()
         {
-            if (++_x > 4)
-            {
-                _x = 4;
-            }
+            X++;
         }
 
         private void MoveNorth()
         {
-            if (++_y > 4)
-            {
-                _y = 4;
-            }
+            Y++;
         }
 
-        public void Report()
-        {
-            Console.WriteLine($"Output: {_x}, {_y}, {_direction.ToString().ToUpper()}");
-        }
     }
 }
